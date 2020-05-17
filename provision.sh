@@ -1,6 +1,7 @@
 #!/bin/bash
 
 readonly home_dir_vagrant="/home/vagrant"
+readonly DOCKER_VERSION="19.03.6-0ubuntu1~18.04.1"
 readonly SALT_VERSION="2017.7.4+dfsg1-1ubuntu18.04.1"
 readonly TERRAFORM_VERSION="0.12.25"
 readonly TERRAFORM_AWS_PROVIDER_VERSION="2.62.0"
@@ -21,6 +22,7 @@ declare -ra os_packages=(
   "jq"
   "python3-dev"
   "python3-pip"
+  "docker.io=${DOCKER_VERSION}"
   "salt-api=${SALT_VERSION}"
   "salt-cloud=${SALT_VERSION}"
   "salt-master=${SALT_VERSION}"

@@ -10,6 +10,7 @@ Installed tools include:
 - Python 3.6.9
 - Salt 2017.7.4 (Nitrogen)
 - Ansible 2.9.1
+- Docker version 19.03.6
 
 # Prerequisites
 
@@ -59,4 +60,6 @@ ansible 2.9.2
   ansible python module location = /home/vagrant/.local/lib/python3.6/site-packages/ansible
   executable location = /home/vagrant/.local/bin/ansible
   python version = 3.6.9 (default, Apr 18 2020, 01:56:04) [GCC 8.4.0]
+vagrant@ubuntu-bionic:~$ docker --version
+Docker version 19.03.6, build 369ce74a3c
 ```
