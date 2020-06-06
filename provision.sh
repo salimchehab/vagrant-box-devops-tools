@@ -2,7 +2,7 @@
 
 readonly home_dir_vagrant="/home/vagrant"
 readonly DOCKER_VERSION="19.03.6-0ubuntu1~18.04.1"
-readonly SALT_VERSION="2017.7.4+dfsg1-1ubuntu18.04.1"
+readonly SALT_VERSION="3000.3"
 readonly TERRAFORM_VERSION="0.12.25"
 readonly TERRAFORM_AWS_PROVIDER_VERSION="2.62.0"
 readonly VAULT_VERSION="1.4.1"
@@ -23,12 +23,6 @@ declare -ra os_packages=(
   "python3-dev"
   "python3-pip"
   "docker.io=${DOCKER_VERSION}"
-  "salt-api=${SALT_VERSION}"
-  "salt-cloud=${SALT_VERSION}"
-  "salt-master=${SALT_VERSION}"
-  "salt-minion=${SALT_VERSION}"
-  "salt-ssh=${SALT_VERSION}"
-  "salt-syndic=${SALT_VERSION}"
 )
 
 declare -ra pip_requirements=(
@@ -47,6 +41,18 @@ function install_pip_packages() {
   for pip_requirement in "${pip_requirements[@]}"; do
     su - vagrant -c "pip3 install ${pip_requirement} --upgrade --user"
   done
+}
+
+function install_salt() {
+
+  wget -O - "https://repo.saltstack.com/apt/ubuntu/18.04/amd64/archive/${SALT_VERSION}/SALTSTACK-GPG-KEY.pub" | apt-key add -
+  echo "deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/archive/${SALT_VERSION} bionic main" > /etc/apt/sources.list.d/saltstack.list
+  apt-get update && apt-get install -y "salt-api" \
+    "salt-cloud" \
+    "salt-master" \
+    "salt-minion" \
+    "salt-ssh" \
+    "salt-syndic"
 }
 
 function configure_binaries() {
@@ -75,6 +81,9 @@ function main() {
 
   printf "[INFO]: %s\n" "Calling the following function: install_pip_packages"
   install_pip_packages
+
+  printf "[INFO]: %s\n" "Calling the following function: install_salt"
+  install_salt
 
   printf "[INFO]: %s\n" "Calling the following function: configure_binaries"
   configure_binaries

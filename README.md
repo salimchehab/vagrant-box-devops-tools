@@ -8,8 +8,8 @@ Installed tools include:
 - Vault v1.4.1
 - aws-cli version 1.18.40
 - Python 3.6.9
-- Salt 2017.7.4 (Nitrogen)
-- Ansible 2.9.1
+- Salt 3000.3
+- Ansible 2.9.2
 - Docker version 19.03.6
 
 # Prerequisites
@@ -52,7 +52,7 @@ Vault v1.4.1
 vagrant@ubuntu-bionic:~$ aws --version
 aws-cli/1.18.40 Python/3.6.9 Linux/4.15.0-99-generic botocore/1.15.40
 vagrant@ubuntu-bionic:~$ salt --version
-salt 2017.7.4 (Nitrogen)
+salt 3000.3
 vagrant@ubuntu-bionic:~$ ansible --version
 ansible 2.9.2
   config file = None
